@@ -19,7 +19,7 @@ Parameters:
 #       Type: Canary10Percent5Minutes
 
 Resources:
-  HelloWorld:
+  TheGodlambda:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
