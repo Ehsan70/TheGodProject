@@ -33,6 +33,11 @@ Resources:
           Properties:
             Path: /
             Method: get
+        GetMsgsEvent:
+          Type: Api
+          Properties:
+            Path: /msgs
+            Method: get
         PostEvent:
           Type: Api
           Properties:
