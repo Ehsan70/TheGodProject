@@ -63,3 +63,16 @@ should also regularly review and apply any available patches or associated secur
 advisories for dependencies used within your application.
 
 Best Practices: https://docs.aws.amazon.com/codestar/latest/userguide/best-practices.html?icmpid=docs_acs_rm_sec
+
+
+# Roles
+This section describes the roles created by codestar
+
+
+## CodeStarWorker-thegodproject-CodeBuild
+
+This is used CodeBuild to run buildspec.yml commands.
+
+Note that in the build step tests are run, the lambda talks to dynamoDb so I had to give it full access to dynamoDb for now. 
+
+- [ ] Tighten the access to DnamoDb tables
