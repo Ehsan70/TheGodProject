@@ -1,0 +1,37 @@
+{
+    "resource": "/msgs",
+    "path": "/msgs",
+    "httpMethod": "GET",
+    "headers": null,
+    "queryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+      "path": "/msgs",
+      "accountId": "906782337570",
+      "resourceId": "po4cr1",
+      "stage": "test-invoke-stage",
+      "requestId": "c99d8509-b0b6-11e8-9496-19c57efa7ea3",
+      "identity": {
+        "cognitoIdentityPoolId": null,
+        "cognitoIdentityId": null,
+        "apiKey": "test-invoke-api-key",
+        "cognitoAuthenticationType": null,
+        "userArn": "arn:aws:iam::906782337570:user/DevAdmin",
+        "apiKeyId": "test-invoke-api-key-id",
+        "userAgent": "aws-internal/3 aws-sdk-java/1.11.347 Linux/4.9.110-0.1.ac.201.71.329.metal1.x86_64 Java_HotSpot(TM)_64-Bit_Server_VM/25.172-b31 java/1.8.0_172",
+        "accountId": "906782337570",
+        "caller": "AIDAI42PUR62P7TTHNFI2",
+        "sourceIp": "test-invoke-source-ip",
+        "accessKey": "ASIA5GIDQNIRP43GUXGG",
+        "cognitoAuthenticationProvider": null,
+        "user": "AIDAI42PUR62P7TTHNFI2"
+      },
+      "resourcePath": "/msgs",
+      "httpMethod": "GET",
+      "extendedRequestId": "Mue5DGJNoAMFiJw=",
+      "apiId": "k3c3xgdc6e"
+    },
+    "body": null,
+    "isBase64Encoded": false
+  }
