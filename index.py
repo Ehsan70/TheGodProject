@@ -2,7 +2,6 @@ import json
 import datetime
 import boto3
 
-dynamodb_client = boto3.client('dynamodb')
 dynamodb = boto3.resource('dynamodb')
 
 def result(status, message):
@@ -17,7 +16,7 @@ def result(status, message):
 
 def handler(event, context):
     # todo make this an env variable using cloudformation   
-    table = dynamodb.Table('GodMessagesTable')
+    table = dynamodb.Table('awscodestar-thegodproject-lambda-GodMessagesTable-183ORF0JZ5VMK')
     if (event['resource'] == "/msgs"):
         response = table.scan()
         print('Response from scan is : ' + json.dumps(response))
