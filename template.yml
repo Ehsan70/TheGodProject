@@ -38,6 +38,11 @@ Resources:
           Properties:
             Path: /msgs
             Method: get
+        GetMsgEvent:
+          Type: Api
+          Properties:
+            Path: /msg/{msgid}
+            Method: get
         PostEvent:
           Type: Api
           Properties:
