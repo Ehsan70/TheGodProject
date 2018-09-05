@@ -50,7 +50,7 @@ Resources:
         - AttributeName: msgid
           AttributeType: S
       KeySchema: 
-        - AttributeName: id
+        - AttributeName: msgid
           KeyType: HASH
       ProvisionedThroughput: 
         ReadCapacityUnits: 5
