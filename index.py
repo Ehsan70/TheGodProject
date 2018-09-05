@@ -18,7 +18,7 @@ def handler(event, context):
     print('Received event is : '+ json.dumps(event))
     existing_tables = dynamodb_client.list_tables()
     data = {
-        'output': 'Hello World',
+        'event': event,
         'tables': existing_tables,
         'timestamp': datetime.datetime.utcnow().isoformat()
     }
