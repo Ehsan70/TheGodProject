@@ -23,7 +23,7 @@ def handler(event, context):
         if "ResponseMetadata" in response:
             del response["ResponseMetadata"]
         return {
-            'statusCode': '200',
+            'statusCode': 200,
             'body': response,
             'headers': {
                 'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ def handler(event, context):
         return result(200, item)
     elif (event['resource'] == "/msg" and event['httpMethod'] == "POST"):
         # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
-        #msg_payload = 
-        #put_response = ddb_table.put_item(Item={'msgid':str(uuid.uuid1()), 'value':})
-        return result(200, json.dumps(event))
+        msg_payload = json.loads(event['body'])
+        put_response = ddb_table.put_item(Item={'msgid':str(uuid.uuid1()), 'value': msg_payload['msg_content']})
+        return result(200, json.dumps(put_response))
     else:
         return result(500, "The resource {} is no handled by lambda. Event data: {}".format(event['resource'], json.dumps(event)))
