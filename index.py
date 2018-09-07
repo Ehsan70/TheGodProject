@@ -1,6 +1,7 @@
 import json
 import datetime
 import boto3
+import uuid
 
 
 def result(status, message):
@@ -40,5 +41,11 @@ def handler(event, context):
             # If there is no Item key in the response then we have not found the item
             return result(400, "Msg not found")
         return result(200, item)
+    elif (event['resource'] == "/msg" and event['httpMethod'] == "POST"):
+        # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
+        msgid = event['pathParameters']['msgid']
+        #msg_payload = 
+        #put_response = ddb_table.put_item(Item={'msgid':str(uuid.uuid1()), 'value':})
+        return result(200, json.dumps(event))
     else:
-        return result(500, "The resource {} is no handled by lambda.".format(event['resource']))
+        return result(500, "The resource {} is no handled by lambda. Event data: {}".format(event['resource'], json.dumps(event)))
