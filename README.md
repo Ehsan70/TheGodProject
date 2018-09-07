@@ -76,3 +76,13 @@ This is used CodeBuild to run buildspec.yml commands.
 Note that in the build step tests are run, the lambda talks to dynamoDb so I had to give it full access to dynamoDb for now. 
 
 - [ ] Tighten the access to DnamoDb tables
+
+
+
+
+# Tests 
+unittet module is used. 
+
+You can run just the aws tests by executing: `python -m unittest discover -s tests -p "*_aws.py"`
+
+In order to run all the tests run: `python -m unittest discover tests`
