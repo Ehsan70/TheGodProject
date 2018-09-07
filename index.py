@@ -43,7 +43,6 @@ def handler(event, context):
         return result(200, item)
     elif (event['resource'] == "/msg" and event['httpMethod'] == "POST"):
         # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
-        msgid = event['pathParameters']['msgid']
         #msg_payload = 
         #put_response = ddb_table.put_item(Item={'msgid':str(uuid.uuid1()), 'value':})
         return result(200, json.dumps(event))
