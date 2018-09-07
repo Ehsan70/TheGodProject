@@ -2,7 +2,6 @@ import json
 import datetime
 import boto3
 
-dynamodb = boto3.resource('dynamodb')
 
 def result(status, message):
     return {
@@ -15,16 +14,18 @@ def result(status, message):
     }
 
 def handler(event, context):
+    ddb_resource = boto3.resource('dynamodb', 'us-east-1')
     # todo make this an env variable using cloudformation   
-    table = dynamodb.Table('awscodestar-thegodproject-lambda-GodMessagesTable-183ORF0JZ5VMK')
+    ddb_table = ddb_resource.Table('awscodestar-thegodproject-lambda-GodMessagesTable-183ORF0JZ5VMK')
+    
     if (event['resource'] == "/msgs"):
-        response = table.scan()
+        response = ddb_table.scan()
         print('Response from scan is : ' + json.dumps(response))
         if "ResponseMetadata" in response:
             del response["ResponseMetadata"]
         return {
             'statusCode': '200',
-            'body': json.dumps(response),
+            'body': response,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
@@ -34,7 +35,7 @@ def handler(event, context):
         # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
         msgid = event['pathParameters']['msgid']
         print('Getting the message with ID {}.'.format(msgid))
-        response = table.get_item(Key={'msgid':str(msgid)})
+        response = ddb_table.get_item(Key={'msgid':str(msgid)})
         print('Response from get_item is : ' + json.dumps(response))
         if 'Item' in response:
             # If there is an Item key in that response then we have found the item
@@ -44,6 +45,6 @@ def handler(event, context):
             return result(400, "Msg not found")
 
         print('Constructed result is : ' + json.dumps(item))
-        return result(200, json.dumps(item))
+        return result(200, item)
     else:
         return result(500, "The resource {} is no handled by lambda.".format(event['resource']))
