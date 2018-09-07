@@ -6,7 +6,7 @@ import os
 import boto3
 
 
-class TestHandlerCase(unittest.TestCase):
+class TestHandlerLocal(unittest.TestCase):
     def setUp(self):
         self.table_name = 'awscodestar-thegodproject-lambda-GodMessagesTable-183ORF0JZ5VMK'
         self.first_item = {}
