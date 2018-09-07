@@ -43,6 +43,11 @@ Resources:
           Properties:
             Path: /msg/{msgid}
             Method: get
+        PostMsgEvent:
+          Type: Api
+          Properties:
+            Path: /msg
+            Method: post
         PostEvent:
           Type: Api
           Properties:
