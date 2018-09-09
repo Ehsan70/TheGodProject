@@ -66,6 +66,7 @@ Resources:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
   TheGodBucket:
+    # doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: PublicRead
