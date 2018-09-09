@@ -65,3 +65,5 @@ Resources:
       ProvisionedThroughput: 
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
+  TheGodBucket:
+    Type: AWS::S3::Bucket
