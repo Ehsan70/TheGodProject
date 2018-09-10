@@ -7,11 +7,12 @@ import uuid
 def result(status, message):
     return {
         'statusCode': status,
-        'body': message,
+        'body': json.dumps(message),
         'headers': {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
-        }
+        },
+        "isBase64Encoded": False
     }
 
 def handler(event, context):
@@ -22,7 +23,7 @@ def handler(event, context):
         response = ddb_table.scan()
         if "ResponseMetadata" in response:
             del response["ResponseMetadata"]
-        return result('200', response)
+        return result(200, response)
     elif (event['resource'] == "/msg/{msgid}" and event['httpMethod'] == "GET"):
         # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
         msgid = event['pathParameters']['msgid']
@@ -32,12 +33,12 @@ def handler(event, context):
             item = response['Item']
         else:
             # If there is no Item key in the response then we have not found the item
-            return result('400', "Msg not found")
-        return result('200', item)
+            return result(400, "Msg not found")
+        return result(200, item)
     elif (event['resource'] == "/msg" and event['httpMethod'] == "POST"):
         # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
         msg_payload = json.loads(event['body'])
         put_response = ddb_table.put_item(Item={'msgid':str(uuid.uuid1()), 'value': msg_payload['msg_content']})
-        return result('200', json.dumps(put_response))
+        return result(200, put_response)
     else:
-        return result('500', "The resource {} is no handled by lambda. Event data: {}".format(event['resource'], json.dumps(event)))
+        return result(500, "The resource {} is no handled by lambda. Event data: {}".format(event['resource'], json.dumps(event)))
