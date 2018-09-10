@@ -22,14 +22,7 @@ def handler(event, context):
         response = ddb_table.scan()
         if "ResponseMetadata" in response:
             del response["ResponseMetadata"]
-        return {
-            'statusCode': 200,
-            'body': response,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }
-        }
+        return result(200, response)
     elif (event['resource'] == "/msg/{msgid}" and event['httpMethod'] == "GET"):
         # msgid the url parameter passed to API gateway. All the URL paramteres ap pear under pathParameters
         msgid = event['pathParameters']['msgid']
